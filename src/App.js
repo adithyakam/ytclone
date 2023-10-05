@@ -9,7 +9,7 @@ import VideoCard from "./Components/VideoCard";
 
 function App() {
   return (
-    <div className="bg-slate-950 text-slate-100">
+    <div className="bg-dark-theme-background-color text-dark-theme-text-color">
       <Header />
       <SideMenu />
       <Body />
