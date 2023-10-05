@@ -5,15 +5,20 @@ import search from "../assets/search.svg";
 import mic from "../assets/mic.svg";
 import camera from "../assets/camera.svg";
 import bell from "../assets/bell.svg";
+import { useDispatch } from "react-redux";
+import { toggleSideMenu } from "./Redux/sideMednuSlice";
 
 const Header = () => {
+  const dispatch = useDispatch();
+
   return (
     <div className="grid   p-2 px-4">
       <div className="col-span-2 row-span-1 col-start-1 flex  items-center">
         <img
           src={ham}
           alt="hamburger"
-          className="flex flex-row justify-center  h-6  w-8"
+          onClick={() => dispatch(toggleSideMenu())}
+          className="flex flex-row justify-center  h-6  w-8 cursor-pointer"
         />
         <img src={logo} alt="yt-logo" className=" h-5 ml-4" />
       </div>
