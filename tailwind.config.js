@@ -22,6 +22,7 @@ module.exports = {
       "dark-theme-secondary-color": "#bcbcbc",
       "dark-theme-disabled-color": "#646464",
       "dark-theme-divider-color": "#3c3c3c",
+      "dark-theme-filter-color": "#2f2e2e",
     },
     extend: {},
   },

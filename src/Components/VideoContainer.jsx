@@ -1,7 +1,8 @@
 import React from "react";
+import Filters from "./Filters";
 
 const VideoContainer = () => {
-  return <div>VideoContainer</div>;
+  return <div></div>;
 };
 
 export default VideoContainer;

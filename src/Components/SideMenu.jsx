@@ -7,10 +7,15 @@ import history from "../assets/history.svg";
 import yourvid from "../assets/vid.svg";
 import watchlater from "../assets/watchlater.svg";
 import liked from "../assets/like.svg";
+import { useSelector } from "react-redux";
 
 const SideMenu = () => {
+  const sidebarmenustate = useSelector((state) => state.sidemenu.sidemenu);
+
+  if (!sidebarmenustate) return null;
+
   return (
-    <div className="w-[15%] h-full fixed flex flex-col items-center z-10 bg-dark-theme-background-color p-4">
+    <div className="col-span-1 h-full  flex flex-col items-center z-10 bg-dark-theme-background-color p-4">
       <div className="flex  w-full p-2 hover:bg-light-theme-secondary-color rounded-md text-sm">
         <img src={home} alt="home" className="justify-start" />
         <h1 className="ml-8">Home</h1>
