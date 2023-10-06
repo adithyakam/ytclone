@@ -10,7 +10,7 @@ import store from "./Components/Redux/store";
 
 function App() {
   return (
-    <div className="bg-dark-theme-background-color text-dark-theme-text-color overflow-hidden ">
+    <div className="bg-dark-theme-background-color text-dark-theme-text-color  ">
       <Header />
       <Body />
     </div>

@@ -28,7 +28,7 @@ const SideMenu = () => {
         <img src={subs} alt="home" className="justify-start" />
         <h1 className="ml-8">Subscription</h1>
       </div>
-      <hr class=" h-px w-full my-4 bg-dark-theme-disabled-color border-0 z-100 " />
+      <hr className=" h-px w-full my-4 bg-dark-theme-disabled-color border-0 z-100 " />
       <div className="flex  w-full p-2 hover:bg-light-theme-secondary-color rounded-md text-sm">
         <img src={lib} alt="home" className="justify-start" />
         <h1 className="ml-8">Library</h1>
