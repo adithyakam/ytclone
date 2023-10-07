@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { YT_API } from "../utilities/api";
 import VideoCard from "./VideoCard";
 
+import { Link } from "react-router-dom";
+
 const VideoContainer = () => {
   const [video, setvideo] = useState([]);
 
@@ -25,7 +27,9 @@ const VideoContainer = () => {
     <div className="mx-auto w-full ">
       <div className="flex flex-wrap justify-center items-center ">
         {video.map((vid) => (
-          <VideoCard info={vid} key={vid.id} />
+          <Link key={vid.id} to={"/watch?v=" + vid.id}>
+            <VideoCard info={vid} />
+          </Link>
         ))}
       </div>
     </div>
