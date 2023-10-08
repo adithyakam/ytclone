@@ -22,7 +22,6 @@ const VideoContainer = () => {
 
   if (video.length === 0) return <h1>loading</h1>;
 
-  console.log(video[0]);
   return (
     <div className="mx-auto w-full ">
       <div className="flex flex-wrap justify-center items-center ">
