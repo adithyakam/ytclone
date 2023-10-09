@@ -5,26 +5,41 @@ import search from "../assets/search.svg";
 import mic from "../assets/mic.svg";
 import camera from "../assets/camera.svg";
 import bell from "../assets/bell.svg";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleSideMenu } from "./Redux/sideMednuSlice";
 import { useState } from "react";
 import { useEffect } from "react";
 import { YT_API, YT_SEARCH } from "../utilities/api";
+import { cacheResults } from "./Redux/searchSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
+  const searchcache = useSelector((state) => state.search);
 
   const [searchquery, setsearchquery] = useState("");
   const [suggestion, setsuggestion] = useState([]);
+
+  const [showsuggestion, setshowsuggestion] = useState(false);
 
   const getqueryresults = async () => {
     const data = await fetch(YT_SEARCH + searchquery);
     const json = await data.json();
     setsuggestion(json[1]);
+    dispatch(
+      cacheResults({
+        [searchquery]: json[1],
+      })
+    );
   };
 
   useEffect(() => {
-    const timer = setTimeout(() => getqueryresults(), 200);
+    const timer = setTimeout(() => {
+      if (searchcache[searchquery]) {
+        setsuggestion(searchcache[searchquery]);
+      } else {
+        getqueryresults();
+      }
+    }, 200);
     return () => {
       clearTimeout(timer);
     };
@@ -48,15 +63,17 @@ const Header = () => {
               type="text"
               placeholder="Search"
               value={searchquery}
+              onFocus={() => setshowsuggestion(true)}
+              onBlur={() => setshowsuggestion(false)}
               onChange={(e) => setsearchquery(e.target.value)}
               className="z-10  pl-3 p-1 h-10 rounded-l-full bg-dark-theme-background-color border border-1 text-dark-theme-secondary-color border-dark-theme-divider-color"
             />
-            {suggestion.length > 0 ? (
-              <div className=" w-[33%] fixed bg-light-theme-text-color py-2 px-1 rounded-md  mt-11 hover:bg-light-theme-secondary-color">
+            {!showsuggestion ? null : suggestion.length > 1 ? (
+              <div className=" w-[33%] absolute bg-light-theme-text-color py-2 px-1 rounded-md  mt-11 ">
                 <ul>
                   {suggestion?.map((suggestitem) => {
                     return (
-                      <div className="flex items-center p-2">
+                      <div className="flex items-center p-2 hover:bg-light-theme-secondary-color cursor-pointer">
                         <img
                           src={search}
                           className="h-5 w-5 mr-2 justify-start"
