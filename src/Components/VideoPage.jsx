@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { closeSideMenu } from "./Redux/sideMednuSlice";
 import { useSearchParams } from "react-router-dom";
 import ComentsContainer from "./ComentsContainer";
@@ -7,7 +7,6 @@ import LiveChat from "./LiveChat";
 
 const VideoPage = () => {
   const disptach = useDispatch();
-
   let [searchParams] = useSearchParams();
 
   const vidid = searchParams.get("v");
