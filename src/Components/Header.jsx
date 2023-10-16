@@ -11,6 +11,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { YT_API, YT_SEARCH } from "../utilities/api";
 import { cacheResults } from "./Redux/searchSlice";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -30,6 +31,10 @@ const Header = () => {
         [searchquery]: json[1],
       })
     );
+  };
+
+  const getsearchRes = (e) => {
+    // nav(`/results?q=${e}`);
   };
 
   useEffect(() => {
@@ -73,13 +78,20 @@ const Header = () => {
                 <ul>
                   {suggestion?.map((suggestitem) => {
                     return (
-                      <div className="flex items-center p-2 hover:bg-light-theme-secondary-color cursor-pointer">
-                        <img
-                          src={search}
-                          className="h-5 w-5 mr-2 justify-start"
-                        />
-                        <li className="my-1 justify-end">{suggestitem}</li>
-                      </div>
+                      <Link to="/">
+                        <div className="flex items-center p-2 hover:bg-light-theme-secondary-color cursor-pointer">
+                          <img
+                            src={search}
+                            className="h-5 w-5 mr-2 justify-start"
+                          />
+                          <li
+                            onClick={getsearchRes(suggestitem)}
+                            className="my-1 justify-end"
+                          >
+                            {suggestitem}
+                          </li>
+                        </div>
+                      </Link>
                     );
                   })}
                 </ul>
