@@ -2,6 +2,7 @@ import React from "react";
 import ham from "../assets/ham.svg";
 import logo from "../assets/logo.svg";
 import search from "../assets/search.svg";
+
 import mic from "../assets/mic.svg";
 import camera from "../assets/camera.svg";
 import bell from "../assets/bell.svg";
@@ -12,15 +13,19 @@ import { useEffect } from "react";
 import { YT_API, YT_SEARCH } from "../utilities/api";
 import { cacheResults } from "./Redux/searchSlice";
 import { Link, useNavigate } from "react-router-dom";
+import Suggestion from "./Suggestion";
 
 const Header = () => {
   const dispatch = useDispatch();
   const searchcache = useSelector((state) => state.search);
 
+  const nav = useNavigate();
   const [searchquery, setsearchquery] = useState("");
   const [suggestion, setsuggestion] = useState([]);
 
   const [showsuggestion, setshowsuggestion] = useState(false);
+
+  const [hoverState, sethoverState] = useState(false);
 
   const getqueryresults = async () => {
     const data = await fetch(YT_SEARCH + searchquery);
@@ -33,8 +38,13 @@ const Header = () => {
     );
   };
 
+  const getMouseOverSuggestion = (e) => {
+    sethoverState(e);
+  };
+
   const getsearchRes = (e) => {
-    // nav(`/results?q=${e}`);
+    nav(`/results?q=${e}`);
+    setsearchquery("");
   };
 
   useEffect(() => {
@@ -69,8 +79,12 @@ const Header = () => {
               placeholder="Search"
               value={searchquery}
               onFocus={() => setshowsuggestion(true)}
-              onBlur={() => setshowsuggestion(false)}
-              onChange={(e) => setsearchquery(e.target.value)}
+              onBlur={() => {
+                !hoverState && setshowsuggestion(false);
+              }}
+              onChange={(e) => {
+                setsearchquery(e.target.value);
+              }}
               className="z-10  pl-3 p-1 h-10 rounded-l-full bg-dark-theme-background-color border border-1 text-dark-theme-secondary-color border-dark-theme-divider-color"
             />
             {!showsuggestion ? null : suggestion.length > 1 ? (
@@ -78,20 +92,12 @@ const Header = () => {
                 <ul>
                   {suggestion?.map((suggestitem) => {
                     return (
-                      <Link to="/">
-                        <div className="flex items-center p-2 hover:bg-light-theme-secondary-color cursor-pointer">
-                          <img
-                            src={search}
-                            className="h-5 w-5 mr-2 justify-start"
-                          />
-                          <li
-                            onClick={getsearchRes(suggestitem)}
-                            className="my-1 justify-end"
-                          >
-                            {suggestitem}
-                          </li>
-                        </div>
-                      </Link>
+                      <Suggestion
+                        key={suggestitem}
+                        getMouseOverSuggestion={getMouseOverSuggestion}
+                        suggestitem={suggestitem}
+                        getsearchRes={getsearchRes}
+                      />
                     );
                   })}
                 </ul>

@@ -2,7 +2,7 @@ import "./App.css";
 import Header from "./Components/Header";
 import Body from "./Components/Body";
 
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import MainContainer from "./Components/MainContainer";
 import VideoPage from "./Components/VideoPage";
 import SearchResultPage from "./Components/SearchResultPage";
@@ -10,7 +10,12 @@ import SearchResultPage from "./Components/SearchResultPage";
 const approuter = createBrowserRouter([
   {
     path: "/",
-    element: <Body />,
+    element: (
+      <div>
+        <Header />
+        <Body />
+      </div>
+    ),
     children: [
       {
         path: "/",
@@ -31,8 +36,10 @@ const approuter = createBrowserRouter([
 function App() {
   return (
     <div className="bg-dark-theme-background-color text-dark-theme-text-color  ">
-      <Header />
-      <RouterProvider router={approuter}></RouterProvider>
+      {/* <Header /> */}
+      <RouterProvider router={approuter}>
+        <Body />
+      </RouterProvider>
     </div>
   );
 }
