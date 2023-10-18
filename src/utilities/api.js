@@ -5,4 +5,4 @@ export const YT_SEARCH =
   "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
 
 export const YT_SEARCH_API =
-  "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxresults=25&q=";
+  "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=";
