@@ -6,3 +6,6 @@ export const YT_SEARCH =
 
 export const YT_SEARCH_API =
   "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=";
+
+export const YT_CATEGORY_API =
+  "https://youtube.googleapis.com/youtube/v3/videoCategories?part=snippet&regionCode=IN&key=";

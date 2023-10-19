@@ -23,7 +23,7 @@ const VideoContainer = () => {
   if (video.length === 0) return <h1>loading</h1>;
 
   return (
-    <div className="mx-auto w-full ">
+    <div className="mx-auto">
       <div className="flex flex-wrap justify-center items-center ">
         {video.map((vid) => (
           <Link key={vid.id} to={"/watch?v=" + vid.id}>
