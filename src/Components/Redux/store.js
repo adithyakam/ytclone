@@ -3,6 +3,7 @@ import sideMednuSlice from "./sideMednuSlice";
 import searchSlice from "./searchSlice";
 import livechatSlice from "./livechatSlice";
 import categorySlice from "./categorySlice";
+import vidSlice from "./vidSlice";
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     search: searchSlice,
     livechat: livechatSlice,
     category: categorySlice,
+    vid: vidSlice,
   },
 });
 

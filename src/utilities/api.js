@@ -9,3 +9,8 @@ export const YT_SEARCH_API =
 
 export const YT_CATEGORY_API =
   "https://youtube.googleapis.com/youtube/v3/videoCategories?part=snippet&regionCode=IN&key=";
+
+export const YT_CAT_API =
+  "https://youtube.googleapis.com/youtube/v3/search?part=snippet&channelId=";
+
+// ("&maxResults=25&q=surfing&key=");
