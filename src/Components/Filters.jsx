@@ -63,7 +63,11 @@ const Filters = () => {
             <button
               key={filter.snippet.title}
               onClick={(e) => getCatRes(filter.snippet.title)}
-              className=" text-xs whitespace-nowrap	 font-bold h-8 w-auto bg-dark-theme-filter-color p-2 block  text-center rounded-md mx-2"
+              className={`${
+                catsearch == filter.snippet.title
+                  ? "bg-light-theme-background-color text-dark-theme-background-color"
+                  : "bg-dark-theme-filter-color"
+              } text-xs whitespace-nowrap	 font-bold h-8 w-auto  p-2 block  text-center rounded-md mx-2`}
             >
               {filter.snippet.title}
             </button>
