@@ -3,6 +3,7 @@ import { YT_CATEGORY_API } from "../utilities/api";
 import { useDispatch, useSelector } from "react-redux";
 import { addCat } from "./Redux/categorySlice";
 import { addKey } from "./Redux/vidSlice";
+import { addcatSearch } from "./Redux/searchCatSlice";
 
 const Filters = () => {
   const filterarr = [
@@ -32,6 +33,8 @@ const Filters = () => {
 
   const disptach = useDispatch();
   const categories = useSelector((state) => state.category);
+  const videoResponse = useSelector((state) => state.vid.vid);
+  const catsearch = useSelector((state) => state.catSearch);
 
   const getVidCategory = async () => {
     const data = await fetch(
@@ -49,7 +52,7 @@ const Filters = () => {
   }, []);
 
   const getCatRes = (key) => {
-    disptach(addKey(key));
+    disptach(addcatSearch(key));
   };
 
   return (

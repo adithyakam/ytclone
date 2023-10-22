@@ -4,6 +4,7 @@ import searchSlice from "./searchSlice";
 import livechatSlice from "./livechatSlice";
 import categorySlice from "./categorySlice";
 import vidSlice from "./vidSlice";
+import searchCatSlice from "./searchCatSlice";
 
 const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
     livechat: livechatSlice,
     category: categorySlice,
     vid: vidSlice,
+    catSearch: searchCatSlice,
   },
 });
 

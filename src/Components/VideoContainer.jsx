@@ -8,20 +8,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { addVideos } from "./Redux/vidSlice";
 
 const VideoContainer = () => {
-  // const [video, setvideo] = useState([]);
-  const video = useSelector((state) => state.vid.vid);
-  const key = useSelector((state) => state.vid.key);
+  const [video, setvideo] = useState([]);
+  const videoResponse = useSelector((state) => state.vid);
+  const catSearch = useSelector((state) => state.catSearch);
 
   const dispatch = useDispatch();
 
   const getYouteubevidkey = async () => {
     await fetch(
-      `${YT_SEARCH_API}${key}&maxResults=25&key=${process.env.REACT_APP_yt_api_key}`
+      `${YT_SEARCH_API}${catSearch}&maxResults=25&key=${process.env.REACT_APP_yt_api_key}`
     )
       .then((res) => res.json())
       .then((res) => {
-        // setvideo(res.items);
-        dispatch(addVideos({ key: key, vid: res.items }));
+        res = res.items.filter((res) => res.id.kind == "youtube#video");
+        dispatch(addVideos({ key: catSearch, vid: res }));
+        setvideo(res);
       });
   };
 
@@ -29,14 +30,25 @@ const VideoContainer = () => {
     await fetch(`${YT_API}key=${process.env.REACT_APP_yt_api_key}`)
       .then((res) => res.json())
       .then((res) => {
+        res = res.items.filter((res) => res.id.kind != "youtube#video");
         // setvideo(res.items);
-        dispatch(addVideos({ key: "", vid: res.items }));
+        console.log(res, "adsf");
+        dispatch(addVideos({ key: "", vid: res }));
+        setvideo(res);
       });
   };
 
   useEffect(() => {
-    key ? getYouteubevidkey() : getYoutubevid();
-  }, [key]);
+    if (catSearch) {
+      if (videoResponse[catSearch]) {
+        setvideo(videoResponse[catSearch]);
+      } else {
+        getYouteubevidkey();
+      }
+    } else {
+      getYoutubevid();
+    }
+  }, [catSearch]);
 
   if (video.length === 0) return <h1>loading</h1>;
 
