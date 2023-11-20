@@ -57,7 +57,7 @@ const Filters = () => {
 
   return (
     <div className="">
-      <div className="flex no-scrollbar overflow-x-scroll px-1 m-2">
+      <div className="flex no-scrollbar overflow-x-scroll m-1  md:px-1 md:m-2">
         {categories.map((filter, i) => {
           return (
             <button
@@ -67,7 +67,7 @@ const Filters = () => {
                 catsearch == filter.snippet.title
                   ? "bg-light-theme-background-color text-dark-theme-background-color"
                   : "bg-dark-theme-filter-color"
-              } text-xs whitespace-nowrap	 font-bold h-8 w-auto  p-2 block  text-center rounded-md mx-2`}
+              } text-[8px] md:text-xs whitespace-nowrap p-1	 m-1  h-6 font-bold md:h-8 w-auto  md:p-2 block  text-center rounded-md md:mx-2`}
             >
               {filter.snippet.title}
             </button>
