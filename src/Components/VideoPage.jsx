@@ -27,7 +27,7 @@ const VideoPage = () => {
               frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowfullscreen
-              className="w-full h-[300px] md:w-[1000px] md:h-[512px] ml-1 rounded-2xl"
+              className="w-3/4 h-1/2 md:w-[1000px] md:h-[512px] ml-1 rounded-2xl"
             ></iframe>
             <div></div>
           </div>
