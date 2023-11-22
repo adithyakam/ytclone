@@ -380,3 +380,5 @@ export const searchres = {
     },
   ],
 };
+
+export const isMobile = navigator.userAgentData.mobile; //resolves true/false

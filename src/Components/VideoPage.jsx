@@ -4,6 +4,7 @@ import { closeSideMenu } from "./Redux/sideMednuSlice";
 import { useSearchParams } from "react-router-dom";
 import ComentsContainer from "./ComentsContainer";
 import LiveChat from "./LiveChat";
+import { isMobile } from "../utilities/helper";
 
 const VideoPage = () => {
   const disptach = useDispatch();
@@ -16,19 +17,17 @@ const VideoPage = () => {
   }, []);
 
   return (
-    <div className="flex justify-around p-10">
+    <div className="flex justify-around p-4 md:p-10">
       <div className="flex flex-col">
         <div className="col-span-11">
           <div>
             <iframe
-              width="1000"
-              height="512"
               src={"https://www.youtube.com/embed/" + vidid}
               title="YouTube video player"
               frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowfullscreen
-              className=" ml-1 rounded-2xl"
+              className="w-full h-[300px] md:w-[1000px] md:h-[512px] ml-1 rounded-2xl"
             ></iframe>
             <div></div>
           </div>
@@ -36,7 +35,7 @@ const VideoPage = () => {
         </div>
         <ComentsContainer />
       </div>
-      <LiveChat />
+      {!isMobile && <LiveChat />}
     </div>
   );
 };

@@ -14,6 +14,7 @@ import { YT_API, YT_SEARCH } from "../utilities/api";
 import { cacheResults } from "./Redux/searchSlice";
 import { Link, useNavigate } from "react-router-dom";
 import Suggestion from "./Suggestion";
+import { isMobile } from "../utilities/helper";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -26,8 +27,6 @@ const Header = () => {
   const [showsuggestion, setshowsuggestion] = useState(false);
 
   const [hoverState, sethoverState] = useState(false);
-
-  const isMobile = navigator.userAgentData.mobile; //resolves true/false
 
   const getqueryresults = async () => {
     const data = await fetch(YT_SEARCH + searchquery);
