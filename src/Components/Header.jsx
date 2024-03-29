@@ -73,7 +73,8 @@ const Header = () => {
         <img
           src={logo}
           alt="yt-logo"
-          className="h-5 w-12  md:w-16 md:h-5 md:ml-4"
+          className="h-5 w-12  md:w-16 md:h-5 md:ml-4 cursor-pointer"
+          onClick={() => nav("/")}
         />
       </div>
       <div className="col-span-5 col-start-5 md:col-span-7  md:h-10 row-span-1 md:col-start-3 ">
